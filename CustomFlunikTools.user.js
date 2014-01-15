@@ -32,9 +32,9 @@ Script does this (in this order):
 7. if your CY < level 25 upgrade CY 
 8. if City Repair time is > 11:45 hours upgrade the CY 
 9. if your offence is maxed out upgrade CC 
-10. if your DHQ is two levels below CC and defence is maxed upgrade DHQ 
+10. if your DHQ is less two levels above CC and defence is maxed upgrade DHQ 
 11. if you have no CC and defence is maxed upgrade DHQ 
-12. if DF < DHQ upgrade DF 
+12. if DF is less then two levels above DHQ upgrade DF 
 13. if Defensive support building < DHQ then upgrade support 
 14. if repair time > 5:50 hours upgrade repair structure 
 15. if repair time > 4 hours and repair structure level < CC and base level < 20 upgrade repair structure 
@@ -506,7 +506,7 @@ intelligent.
 
 									// tryDHQ will only be true if CC exists, offence level is maxed and CC unable to upgrade
 									if (DHQ != null && tryDHQ) { 
-										if (DHQ.get_CurrentLevel() == lowestdefencelevel && _this.canUpgradeBuilding(DHQ, city)) {
+										if (DHQ.get_CurrentLevel()  == lowestdefencelevel && _this.canUpgradeBuilding(DHQ, city)) {
 											console.debug(infolineHeader+infolineUnits+" - Crystal is full - Upgrading DHQ since defencelevel is maximum");
 											DHQ.Upgrade();
 											return;
@@ -574,7 +574,7 @@ intelligent.
 									var tryDHQ=true;
 									if (CC != null) {
 										var tryDHQ=false;
-										if (CC.get_CurrentLevel()>(DHQ.get_CurrentLevel()+2)) {
+										if (CC.get_CurrentLevel() +2) >DHQ.get_CurrentLevel()) {
 											var tryDHQ=true;
 										}
 									}
@@ -597,7 +597,7 @@ intelligent.
 								};
 
 								if (DF != null && DHQ != null) { 
-									if (DF.get_CurrentLevel() < DHQ.get_CurrentLevel()) {
+									if ((DF.get_CurrentLevel()-2)< DHQ.get_CurrentLevel()) {
 										if (_this.canUpgradeBuilding(DF, city)) {
 											//console.debug("FLUNIK: %d The DF building level %d is lower than DHQ level %d - Upgrading",cityname, DF.get_CurrentLevel(), DHQ.get_CurrentLevel());
 											console.debug(infolineHeader+infolineUnits+" - Skipped: "+infolineSkipped+" - Upg: DF<DHQ "+DF.get_CurrentLevel());
